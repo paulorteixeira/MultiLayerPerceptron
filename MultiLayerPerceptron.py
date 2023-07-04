@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-def MLP_treinamento(ampdigitos: int, vsai: int,  entradas:int, neur:int, limiar:float, alfa:float, errotolerado:float):
-    currentDir = os.getcwd()
+def MLP_treinamento(ampdigitos: int, vsai: int,  entradas:int, neur:int, limiar:float, alfa:float, errotolerado:float,currentDir:str):
     os.chdir(currentDir+'\\DadosParaTreino')
 
     randomSeed = rd.randint(0,1000000)
@@ -190,8 +189,7 @@ def MLP_treinamento(ampdigitos: int, vsai: int,  entradas:int, neur:int, limiar:
     np.savetxt('w0a.txt', w0anterior, delimiter =', ') 
 
 
-def MLP_teste(path: str, vsai: int,neur: int,limiar: int):
-    currentDir = os.getcwd()
+def MLP_teste(path: str, vsai: int,neur: int,limiar: int,currentDir:str):
     os.chdir(currentDir+'\\ImgTeste')
     def f(x):
         return 2*x-1
