@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-def MLP_treinamento(ampdigitos: int, vsai: int, amostras: int, entradas:int, neur:int, limiar:float, alfa:float, errotolerado:float):
+def MLP_treinamento(ampdigitos: int, vsai: int,  entradas:int, neur:int, limiar:float, alfa:float, errotolerado:float):
     currentDir = os.getcwd()
     os.chdir(currentDir+'\\DadosParaTreino')
 
@@ -14,6 +14,9 @@ def MLP_treinamento(ampdigitos: int, vsai: int, amostras: int, entradas:int, neu
     listaciclo   = []
     listaerro    = []
     listaVarErro = []
+
+    amostras    = ampdigitos*vsai
+
 
     x  = np.zeros((amostras,entradas))
     k2 = '_'
@@ -176,9 +179,10 @@ def MLP_treinamento(ampdigitos: int, vsai: int, amostras: int, entradas:int, neu
                 contcerto=contcerto+1
             cont = cont+1
 
-        taxa = contcerto/cont
-        print('\n\ntaxa de acerto: \t',taxa*100,'%')
-        print('random seed',randomSeed)
+    taxa = contcerto/cont
+    print('\n\ntaxa de acerto: \t',taxa*100,'%')
+    print('random seed',randomSeed)
+
     os.chdir(currentDir+'\\ValoresPesos')
     np.savetxt('va.txt',   vanterior, delimiter =', ')   
     np.savetxt('v0a.txt', v0anterior, delimiter =', ') 
@@ -189,6 +193,8 @@ def MLP_treinamento(ampdigitos: int, vsai: int, amostras: int, entradas:int, neu
 def MLP_teste(path: str, vsai: int,neur: int,limiar: int):
     currentDir = os.getcwd()
     os.chdir(currentDir+'\\ImgTeste')
+    def f(x):
+        return 2*x-1
     nomeTeste = path+'.txt'
     xteste = f(np.loadtxt(nomeTeste))
 
